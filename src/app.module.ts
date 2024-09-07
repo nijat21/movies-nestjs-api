@@ -4,16 +4,19 @@ import { Movie } from './typeorm/entities/Movies';
 import { Genre } from './typeorm/entities/Genres';
 import { MoviesModule } from './movies/movies.module';
 import { GenresModule } from './genres/genres.module';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: process.env.DB_HOST,
       port: 3306,
-      username: 'root',
-      password: 'jamesbondreturns',
-      database: 'movies_db',
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       entities: [Movie, Genre],
       synchronize: true,
     }),
