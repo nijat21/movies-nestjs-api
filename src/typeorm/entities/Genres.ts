@@ -10,12 +10,12 @@ import { Movie } from './Movies';
 @Entity({ name: 'genres' })
 export class Genre {
   @PrimaryGeneratedColumn({ type: 'bigint' })
-  id: number;
+  id: bigint;
 
   @Column({ unique: true })
   name: string;
 
-  @ManyToMany(() => Movie, (movie) => movie.genres)
+  @ManyToMany(() => Movie, (movie) => movie.genres, { onDelete: 'CASCADE' })
   movies: Movie[];
 
   @CreateDateColumn()
