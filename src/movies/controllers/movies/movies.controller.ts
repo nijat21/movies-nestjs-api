@@ -74,7 +74,7 @@ export class MoviesController {
   @Get('search')
   @ApiOperation({ summary: 'Search movies' })
   @UsePipes(new ValidationPipe())
-  searchMovies(@Body() searchMoviesData: SearchMoviesDto) {
+  searchMovies(@Query() searchMoviesData: SearchMoviesDto) {
     return this.movieService.filterMovies(searchMoviesData);
   }
 }
